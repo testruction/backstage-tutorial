@@ -1,18 +1,23 @@
+# Backstage override configuration for your local development environment
+# Backstage override configuration for your local development environment
 app:
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
-  baseUrl: http://localhost:7007
-
+  baseUrl: http://localhost
+  listen:
+    host: 0.0.0.0
+    port: 3000
 backend:
   # Note that the baseUrl should be the URL that the browser and other clients
   # should use when communicating with the backend, i.e. it needs to be
   # reachable not just from within the backend host, but from all of your
   # callers. When its value is "http://localhost:7007", it's strictly private
   # and can't be reached by others.
-  baseUrl: http://localhost:7007
+  baseUrl: http://localhost
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
-  listen: ':7007'
-
+  listen:
+    host: 0.0.0.0
+    port: 7007
   # config options: https://node-postgres.com/api/client
   database:
     client: pg
@@ -27,9 +32,21 @@ backend:
       # ssl:
       #   ca: # if you have a CA file and want to verify it you can uncomment this section
       #     $file: <file-path>/ca/server.crt
-
+  cors:
+    origin: http://localhost:3000
 catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.
   # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
   # on how to get entities into the catalog.
   locations: []
+kubernetes:
+  serviceLocatorMethod:
+    type: multiTenant
+  clusterLocatorMethods:
+    - type: config
+      clusters:
+        - url: kubernetes.default.svc.cluster.local:443
+          name: local
+          authProvider: serviceAccount
+          skipTLSVerify: false
+          skipMetricsLookup: true

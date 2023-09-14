@@ -28,6 +28,7 @@ import scaffolder from './plugins/scaffolder';
 import proxy from './plugins/proxy';
 import techdocs from './plugins/techdocs';
 import search from './plugins/search';
+import kubernetes from './plugins/kubernetes';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
@@ -84,9 +85,11 @@ async function main() {
   const proxyEnv = useHotMemoize(module, () => createEnv('proxy'));
   const techdocsEnv = useHotMemoize(module, () => createEnv('techdocs'));
   const searchEnv = useHotMemoize(module, () => createEnv('search'));
+  const kubernetesEnv = useHotMemoize(module, () => createEnv('kubernetes'));
   const appEnv = useHotMemoize(module, () => createEnv('app'));
 
   const apiRouter = Router();
+  apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
   apiRouter.use('/catalog', await catalog(catalogEnv));
   apiRouter.use('/scaffolder', await scaffolder(scaffolderEnv));
   apiRouter.use('/auth', await auth(authEnv));

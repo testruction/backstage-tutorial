@@ -55,6 +55,7 @@ import {
   RELATION_PROVIDES_API,
 } from '@backstage/catalog-model';
 
+import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
@@ -174,6 +175,10 @@ const serviceEntityPage = (
 
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+      <EntityKubernetesContent refreshIntervalMs={30000} />
     </EntityLayout.Route>
   </EntityLayout>
 );
