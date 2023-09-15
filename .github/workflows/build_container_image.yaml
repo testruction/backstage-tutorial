@@ -1,7 +1,8 @@
 name: Build and push Docker image
 on:
-  release:
-    types: [published, prereleased]
+  # release:
+  #   types: [published, prereleased]
+  push:
 
 jobs:
   build:
@@ -20,6 +21,9 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
+      - name: Workarount "libsqlite3-dev" installation failing
+        run: apt-get install -y --no-install-recommends libsqlite3-dev
+      
       - name: use node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
