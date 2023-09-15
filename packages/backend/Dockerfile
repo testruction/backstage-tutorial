@@ -14,7 +14,7 @@ FROM node:18-bookworm-slim
 # Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    && apt-get update -y \
+    apt-get update -y \
     && apt-get install -y --no-install-recommends python3 g++ build-essential \
     && yarn config set python /usr/bin/python3
 
