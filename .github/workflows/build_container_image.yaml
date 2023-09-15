@@ -1,7 +1,7 @@
 name: Build and push Docker image
 on:
-  repository_dispatch:
-    types: [release-published]
+  release:
+    types: [published, prereleased]
 
 jobs:
   build:
