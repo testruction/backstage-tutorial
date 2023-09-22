@@ -25,7 +25,7 @@ metadata:
   namespace: backstage
 type: Opaque
 data:
-  GITHUB_TOKEN: VG9rZW5Ub2tlblRva2VuVG9rZW5NYWxrb3ZpY2hUb2tlbg==
+  GITHUB_TOKEN: VG9rZW5Ub2tlblRva2VuVG9rZW5NYWxrb3ZpY2hUb2tlbg==  # Change me
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -35,6 +35,8 @@ metadata:
 data:
   POSTGRES_HOST: postgres
   POSTGRES_PORT: "5432"
+  KUBERNETES_URL: https://kubernetes.default.svc.cluster.local:443
+  PROMETHEUS_URL: http://prometheus-operated.monitoring.svc.cluster.local:9090
 ---
 apiVersion: apps/v1
 kind: Deployment
