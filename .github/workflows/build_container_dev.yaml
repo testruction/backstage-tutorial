@@ -1,6 +1,9 @@
 name: Build and push DEV Docker image
 on:
   push:
+    branches:
+      - feature/**
+      - hostfix/**
     tags:
       - '*.*.*-rc*'
       - '*.*.*-beta*'
