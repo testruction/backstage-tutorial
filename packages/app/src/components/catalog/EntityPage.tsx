@@ -58,6 +58,13 @@ import {
 import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
+import {
+  EntityPrometheusContent,
+} from '@roadiehq/backstage-plugin-prometheus';
+import {
+  EntityPrometheusAlertCard,  
+  EntityPrometheusGraphCard,
+} from '@roadiehq/backstage-plugin-prometheus';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -125,6 +132,14 @@ const entityWarningContent = (
 const overviewContent = (
   <Grid container spacing={3} alignItems="stretch">
     {entityWarningContent}
+
+    <Grid item md={8}>
+      <EntityPrometheusAlertCard />
+    </Grid>
+    <Grid item md={6}>
+      <EntityPrometheusGraphCard />
+    </Grid>
+
     <Grid item md={6}>
       <EntityAboutCard variant="gridItem" />
     </Grid>
@@ -179,6 +194,10 @@ const serviceEntityPage = (
 
     <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/prometheus" title="Prometheus">
+      <EntityPrometheusContent />
     </EntityLayout.Route>
   </EntityLayout>
 );

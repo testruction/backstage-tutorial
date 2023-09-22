@@ -50,3 +50,8 @@ kubernetes:
           authProvider: serviceAccount
           skipTLSVerify: false
           skipMetricsLookup: true
+proxy:
+  /prometheus0/api:
+    target: http://prometheus.operated.monitoring:9090/api/v1/
+prometheus:
+  proxyPath: /prometheus0/api
