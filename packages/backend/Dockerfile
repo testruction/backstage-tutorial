@@ -9,9 +9,9 @@
 #
 # Once the commands have been run, you can build the image using `yarn build-image`
 
-# FROM node:20-bookworm-slim
+FROM node:18-bullseye-slim
 
-FROM bitnami/node:18-debian-11
+# FROM bitnami/node:18-debian-11
 
 # Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -24,7 +24,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # in which case you should also move better-sqlite3 to "devDependencies" in package.json.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get install -y --no-install-recommends libsqlite3-dev
+    apt-get install -y --no-install-recommends libsqlite3-dev && \
+    npm install -g node-gyp
 
 # From here on we use the least-privileged `node` user to run the backend.
 USER node
@@ -44,7 +45,7 @@ COPY --chown=node:node yarn.lock package.json packages/backend/dist/skeleton.tar
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 
 RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid=1000 \
-    yarn install --frozen-lockfile --production --network-timeout 300000 --dev
+    yarn install --frozen-lockfile --production --network-timeout 300000
 
 # Then copy the rest of the backend bundle, along with any other files we might want.
 COPY --chown=node:node packages/backend/dist/bundle.tar.gz app-config*.yaml ./
