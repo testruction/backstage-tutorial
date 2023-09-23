@@ -1,0 +1,11 @@
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-location
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: fastapi-demo
+  description: Demo of a FastAPI frontend/backend application leveraging SqlAlchemy and CoackroachDB
+spec:
+  targets:
+    - ./domains.yaml
+    - ./groups.yaml
