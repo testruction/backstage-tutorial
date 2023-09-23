@@ -1,9 +1,9 @@
-name: Build and push DEV Docker image
+name: Build and push Docker image (simple)
 on:
   push:
-    branches:
-      - feature/**
-      - hostfix/**
+    # branches:
+    #   - feature/**
+    #   - hostfix/**
     tags:
       - '*.*.*-rc*'
       - '*.*.*-beta*'
