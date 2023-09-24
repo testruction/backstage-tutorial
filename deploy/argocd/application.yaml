@@ -127,7 +127,7 @@ spec:
               #     target: 'https://example.com'
               #     changeOrigin: true
               /prometheus0/api:
-                target: http://prometheus.monitoring:9090/api/v1/
+                target: http://prometheus-operated.monitoring:9090/api/v1/
 
             # Reference documentation http://backstage.io/docs/features/techdocs/configuration
             # Note: After experimenting with basic setup, use CI/CD to generate docs
