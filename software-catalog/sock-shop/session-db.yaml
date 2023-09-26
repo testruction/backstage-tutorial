@@ -1,0 +1,48 @@
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: session-db
+  description: Redis that provides session cache to front-end.
+  tags:
+    - redis
+  annotations:
+    prometheus.io/alert: >-
+      session-dbHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="session-db"}
+    backstage.io/kubernetes-id: session-db
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+    - url: https://microservices-demo.github.io/api
+      title: Documentation
+      icon: docs
+      type: apidocs
+spec:
+  type: service
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOn: []
+  providesApis: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-resource
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: session
+  description: Shipping message Queue
+spec:
+  type: queue
+  owner: weaveworks
+  system: sock-shop
+  tags:
+    - redis
+    - cache
+  dependsOff: []
+  dependsOn: [component:session-db]
+  providesApis: []

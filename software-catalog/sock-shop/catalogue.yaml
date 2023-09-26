@@ -1,0 +1,103 @@
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: catalogue-db
+  description: PostgreSQL database dedicated to catalogue/product information
+  tags:
+    - database-engine
+    - postgresql
+  annotations:
+    prometheus.io/alert: >-
+      catalogue-dbHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="catalogue-db"}
+    backstage.io/kubernetes-id: catalogue-db
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+spec:
+  type: service
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOff: []
+  dependsOn: []
+  providesApis: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-resource
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: catalogue-db
+  description: PostgreSQL database dedicated to catalogue/product information
+  annotations:
+    backstage.io/kubernetes-id: catalogue-db
+    backstage.io/kubernetes-namespace: sock-stop
+spec:
+  type: database
+  owner: weaveworks
+  system: sock-shop
+  tags:
+    - postgresql
+    - database
+  dependsOff: []
+  dependsOn: [component:catalogue-db]
+  providesApis: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: catalogue
+  description: Service that provides catalogue/product information
+  tags:
+    - golang
+  annotations:
+    prometheus.io/alert: >-
+      catalogueHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="catalogue"}
+    backstage.io/kubernetes-id: catalogue
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+    - url: https://microservices-demo.github.io/api
+      title: Documentation
+      icon: docs
+      type: apidocs
+spec:
+  type: service
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOn:
+    - resource:catalogue-db
+  providesApis:
+    - catalogue
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: catalogue
+  description: Catalogue/Product API
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  definition:
+    $text: https://github.com/microservices-demo/catalogue/blob/master/api-spec/catalogue.json
