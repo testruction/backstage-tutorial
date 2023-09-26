@@ -35,8 +35,8 @@ spec:
     - checkout-orders-v1
     - checkout-orders-v2
     - customer-disputes-v1
+    - customer-partner-referrals-v1
     - customer-partner-referrals-v2
-    - customer-partner-referals-v2
     - invoicing-v1
     - invoicing-v2
     - notifications-webhooks-v1
@@ -242,7 +242,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: experience-web-experience-profiles-v1
+  name: payment-experience-web-experience-profiles-v1
   description: Use the Payment Experience API to create seamless payment experience profiles.
   tags:
     - rest
