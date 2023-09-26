@@ -1,0 +1,372 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: paypal
+  description: PayPal Holdings, Inc. is an American multinational financial technology company operating an online payments system in the majority of countries that support online money transfers, and serves as an electronic alternative to traditional paper methods such as checks and money orders
+spec:
+  owner: paypal
+  domain: payment
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: paypal
+  description: Paypal payment service
+  tags:
+    - webservice
+    - external
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+spec:
+  type: service
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  dependsOff: []
+  dependsOn: []
+  providesApis:
+    - billing-subscriptions-v1
+    - catalogs-products-v1
+    - checkout-orders-v1
+    - checkout-orders-v2
+    - customer-disputes-v1
+    - customer-partner-referrals-v2
+    - customer-partner-referals-v2
+    - invoicing-v1
+    - invoicing-v2
+    - notifications-webhooks-v1
+    - payment-experience-web-experience-profiles-v1
+    - payments-payment-v1
+    - payments-payment-v2
+    - payments-payouts-batch-v1
+    - reporting-transactions-v1
+    - shipping-shipment-tracking-v1
+    - vault-payment-tokens-v3
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: billing-subscriptions-v1
+  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/billing_subscriptions_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: catalogs-products-v1
+  description: Merchants can use the Catalog Products API to create products, which are goods and services.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/catalogs_products_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: checkout-orders-v1
+  description: Partners can use the Orders API to create, show details for, authorize, and capture payment for orders.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/checkout_orders_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: checkout-orders-v2
+  description: An order represents a payment between two or more parties. Use the Orders API to create, update, retrieve, authorize, and capture orders.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/checkout_orders_v2.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: customer-disputes-v1
+  description: Occasionally, something goes wrong with a customer's order. To dispute a charge, a customer can create a dispute with PayPal. PayPal merchants, partners, and external developers can use the PayPal Disputes API to manage customer disputes.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/customer_disputes_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: customer-partner-referrals-v1
+  description: DEPRECATION NOTICE This integration method is deprecated. PayPal continues to support existing merchants using this method, but be advised that new features and enhancements will not be applied to these integrations.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/customer_partner_referrals_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: customer-partner-referrals-v2
+  description: The Partner Referrals API enables a marketplace to add PayPal seller accounts. It supports the Connected Path marketplace models. IMPORTANT PayPal for Marketplaces is a limited-release solution at this time. It is available to select partners for approved use cases.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/customer_partner_referrals_v2.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: invoicing-v1
+  description: DEPRECATION NOTICE This integration method is deprecated. Use the <code>/v2/invoices</code> endpoint instead. For details, see <a href=\"/docs/invoicing/basic-integration/\">PayPal Invoicing Basic Integration</a>.</blockquote>Use the Invoicing API to create, send, and manage invoices. You can also use the API or webhooks to track invoice payments. When you send an invoice to a customer, the invoice moves from draft to payable state. PayPal then emails the customer a link to the invoice on the PayPal website. Customers with a PayPal account can log in and pay the invoice with PayPal. Alternatively, customers can pay as a guest with a debit card or credit card. For more information, see <a href=\"/docs/invoicing/\">Invoicing Overview</a> and the <a href=\"docs/archive/invoicing/integrate/\">Invoicing Integration Guide</a>.",
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/invoicing_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: invoicing-v2
+  description: Use the Invoicing API to create, send, and manage invoices. You can also use the API or webhooks to track invoice payments. When you send an invoice to a customer, the invoice moves from draft to payable state. PayPal then emails the customer a link to the invoice on the PayPal website. Customers with a PayPal account can log in and pay the invoice with PayPal. Alternatively, customers can pay as a guest with a debit card or credit card. For more information.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/invoicing_v2.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: notifications-webhooks-v1
+  description: Webhooks are HTTP callbacks that receive notification messages for events.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/notifications_webhooks_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: experience-web-experience-profiles-v1
+  description: Use the Payment Experience API to create seamless payment experience profiles.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/payment-experience_web_experience_profiles_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payments-payment-v1
+  description: DEPRECATION NOTICE The <code>/v1/payments</code> endpoint is deprecated. Use the Payments REST API to easily and securely accept online and mobile payments. The payments name space contains resource collections for payments, sales, refunds, authorizations, captures, and orders.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/payments_payment_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payments-payment-v2
+  description: Call the Payments API to authorize payments, capture authorized payments, refund payments that have already been captured, and show payment information. Use the Payments API in conjunction with the "/docs/api/orders/v2/" Orders API.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/payments_payment_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payments-payouts-batch-v1
+  description: Use the Payouts API to make payments to multiple PayPal or Venmo recipients. The Payouts API is a fast, convenient way to send commissions, rebates, rewards, and general disbursements.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/payments_payouts_batch_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: reporting-transactions-v1
+  description: Use the Transaction Search API to get the history of transactions for a PayPal account.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/reporting_transactions_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: shipping-shipment-tracking-v1
+  description: Merchants can use the PayPal Add Tracking API to manage tracking information.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/shipping_shipment_tracking_v1.json
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: vault-payment-tokens-v3
+  description: The Payment Method Tokens API saves payment methods so payers don't have to enter details for future transactions.
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: paypal
+  system: paypal
+  definition:
+    $text: https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/vault_payment_tokens_v3.json

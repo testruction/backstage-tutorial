@@ -1,0 +1,35 @@
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: front-end
+  description: Front-end application that puts together all of the microservices under sock-shop
+  tags:
+    - nodejs
+  annotations:
+    prometheus.io/alert: >-
+      front-endHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="front-end"}
+    backstage.io/kubernetes-id: front-end
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+    - url: https://microservices-demo.github.io/api
+      title: Documentation
+      icon: docs
+      type: apidocs
+spec:
+  type: website
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOn:
+    - api:catalogue
+    - api:orders
+    - resource:session
+  providesApis: []

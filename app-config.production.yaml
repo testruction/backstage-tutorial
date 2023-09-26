@@ -38,20 +38,22 @@ catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.
   # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
   # on how to get entities into the catalog.
-  locations: []
+  locations:
+    - type: url
+      target: https://github.com/backstage/backstage-tutorial/blob/master/catalog/core/locations.yaml
 kubernetes:
   serviceLocatorMethod:
     type: multiTenant
   clusterLocatorMethods:
     - type: config
       clusters:
-        - url: kubernetes.default.svc.cluster.local:443
+        - url: ${KUBERNETES_URL}
           name: local
           authProvider: serviceAccount
           skipTLSVerify: false
           skipMetricsLookup: true
 proxy:
   /prometheus0/api:
-    target: http://prometheus.operated.monitoring:9090/api/v1/
+    target: ${PROMETHEUS_URL}/api/v1/
 prometheus:
   proxyPath: /prometheus0/api

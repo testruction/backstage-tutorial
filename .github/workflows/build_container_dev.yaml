@@ -1,11 +1,14 @@
-name: Build and push DEV Docker image
+name: Build and push Docker image (simple)
 on:
   push:
+    # branches:
+    #   - feature/**
+    #   - hostfix/**
     tags:
-      - '*.*.*-rc*'
-      - '*.*.*-beta*'
-      - '*.*.*-alpha*'
-      - '*.*.*-hotfix*'
+      - '[0-9]+.[0-9]+.[0-9]+-rc*'
+      - '[0-9]+.[0-9]+.[0-9]+-beta*'
+      - '[0-9]+.[0-9]+.[0-9]+-alpha*'
+      - '[0-9]+.[0-9]+.[0-9]+-hotfix*'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -54,7 +57,8 @@ jobs:
           context: './'
           file: ./packages/backend/Dockerfile
           push: true
-          platforms: linux/amd64,linux/arm64
+          # platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           tags: |
             ghcr.io/${{ github.repository_owner }}/backstage:${{ steps.get_version.outputs.VERSION }}
           labels: |

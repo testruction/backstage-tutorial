@@ -1,0 +1,52 @@
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payment
+  description: Service that provides payment services
+  tags:
+    - golang
+  annotations:
+    prometheus.io/alert: >-
+      paymentHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="payment"}
+    backstage.io/kubernetes-id: payment
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+    - url: https://microservices-demo.github.io/api
+      title: Documentation
+      icon: docs
+      type: apidocs
+spec:
+  type: service
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOn:
+    - api:payments-payment-v2
+  providesApis:
+    - payment
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payment
+  description: Payment API
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  definition:
+    $text: https://github.com/microservices-demo/payment/blob/master/api-spec/payment.json

@@ -133,7 +133,7 @@ const overviewContent = (
   <Grid container spacing={3} alignItems="stretch">
     {entityWarningContent}
 
-    <Grid item md={8}>
+    <Grid item md={6}>
       <EntityPrometheusAlertCard />
     </Grid>
     <Grid item md={6}>

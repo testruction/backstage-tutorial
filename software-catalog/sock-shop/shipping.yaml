@@ -1,0 +1,34 @@
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: shipping
+  description: Service that provides shipping capabilities.
+  tags:
+    - springboot
+    - java
+  annotations:
+    prometheus.io/alert: >-
+      shippingHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="shipping"}
+    backstage.io/kubernetes-id: shipping
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+    - url: https://microservices-demo.github.io/api
+      title: Documentation
+      icon: docs
+      type: apidocs
+spec:
+  type: service
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOn:
+    - resource:rabbitmq
+    - component:orders
+  providesApis: []

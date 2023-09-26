@@ -1,0 +1,105 @@
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: orders-db
+  description: MongoDB engine that provides ordering capabilities
+  tags:
+    - database-engine
+    - mongodb
+  annotations:
+    prometheus.io/alert: >-
+      orders-dbHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="orders-db"}
+    backstage.io/kubernetes-id: orders-db
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+spec:
+  type: service
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOff: []
+  dependsOn: []
+  providesApis: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-resource
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: orders-db
+  description: Database dedicated the ordering capabilities
+  annotations:
+    backstage.io/kubernetes-id: orders-db
+    backstage.io/kubernetes-namespace: sock-stop
+spec:
+  type: database
+  owner: weaveworks
+  system: sock-shop
+  tags:
+    - mongo
+    - mongodb
+    - database
+  dependsOff: []
+  dependsOn: [component:orders-db]
+  providesApis: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: orders
+  description: Service that provides ordering capabilities
+  tags:
+    - springboot
+    - java
+  annotations:
+    prometheus.io/alert: >-
+      ordersHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="orders"}
+    backstage.io/kubernetes-id: orders
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+    - url: https://microservices-demo.github.io/api
+      title: Documentation
+      icon: docs
+      type: apidocs
+spec:
+  type: service
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOn:
+    - resource:orders-db
+  providesApis:
+    - orders
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: oders
+  description: Ordering API
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  definition:
+    $text: https://github.com/microservices-demo/orders/blob/master/api-spec/orders.json
