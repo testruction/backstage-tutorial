@@ -1,0 +1,39 @@
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: queue-master
+  description: Service that provides reading from the shipping queue. Simulate the shipping process.
+  tags:
+    - springboot
+    - java
+  annotations:
+    prometheus.io/alert: >-
+      queue-masterHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="queue-master"}
+    backstage.io/kubernetes-id: queue-master
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+    - url: https://microservices-demo.github.io/api
+      title: Documentation
+      icon: docs
+      type: apidocs
+spec:
+  type: service
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOff:
+    - component:queue-master
+  dependsOn:
+    - api:payment
+    - component:shipping
+    - component:queue-master
+    - api:carts
+    - api:user
+  providesApis: []

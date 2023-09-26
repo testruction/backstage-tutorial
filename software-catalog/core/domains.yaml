@@ -1,0 +1,27 @@
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-domain
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: demo
+  description: Demonstrate technology concepts and implementation
+spec:
+  owner: testructer
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-domain
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: payment
+  description: Billing and payments
+spec:
+  owner: testructer
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-domain
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: e-commerce
+  description: Sales stuff on the Web
+spec:
+  owner: testructer

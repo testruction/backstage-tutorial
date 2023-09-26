@@ -1,0 +1,101 @@
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: user-db
+  description: MongoDB engine dedicated to user account database.
+  tags:
+    - database-engine
+    - mongodb
+    - mongo
+  annotations:
+    prometheus.io/alert: >-
+      user-dbHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="user-db"}
+    backstage.io/kubernetes-id: user-db
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+spec:
+  type: service
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOff: []
+  dependsOn: []
+  providesApis: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-resource
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: user-db
+  description: PostgreSQL database dedicated to user account informations.
+spec:
+  type: database
+  owner: weaveworks
+  system: sock-shop
+  tags:
+    - mongodb
+    - database
+  dependsOff: []
+  dependsOn: [component:user-db]
+  providesApis: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: user
+  description: Service that provides user account storage, to include cards and addresses.
+  tags:
+    - golang
+  annotations:
+    prometheus.io/alert: >-
+      userHighErrorRate
+    prometheus.io/rule: >-
+      slo:sli_error:ratio_rate5m{sloth_service="user"}
+    backstage.io/kubernetes-id: user
+    backstage.io/kubernetes-namespace: sock-shop
+  links:
+    - url: https://microservices-demo.github.io/docs
+      title: Documentation
+      icon: docs
+      type: docs
+    - url: https://microservices-demo.github.io/api
+      title: Documentation
+      icon: docs
+      type: apidocs
+spec:
+  type: service
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  dependsOn:
+    - resource:user-db
+  providesApis:
+    - user
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: user
+  description: User account API
+  tags:
+    - rest
+  # annotations:
+  #   # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+  #   backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: openapi
+  lifecycle: production
+  owner: weaveworks
+  system: sock-shop
+  definition:
+    $text: https://github.com/microservices-demo/user/blob/master/apispec/user.json
