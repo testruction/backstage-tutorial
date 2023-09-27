@@ -1,0 +1,57 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus
+  namespace: argo-cd
+spec:
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring
+  project: default
+  source:
+    chart: kube-prometheus-stack
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 51.2.0
+    helm:
+      releaseName: default
+      valuesObject:
+        prometheus:
+          enabled: true
+          service:
+            type: LoadBalancer
+          prometheusSpec:
+            podMonitorSelectorNilUsesHelmValues: false
+            serviceMonitorSelectorNilUsesHelmValues: false
+            ruleSelectorNilUsesHelmValues: false
+        crds:
+          enabled: false
+        grafana:
+          enabled: false
+        kubeApiServer:
+          enabled: false
+        kubelet:
+          enabled: false
+        kubeControllerManager:
+          enabled: false
+        coreDns:
+          enabled: false
+        kubeDns:
+          enabled: false
+        kubeEtcd:
+          enabled: false
+        kubeScheduler:
+          enabled: false
+        kubeProxy:
+          enabled: false
+        kubeStateMetrics:
+          enabled: false
+        nodeExporter:
+          enabled: false
+        thanosRuller:
+          enabled: false
+        kubernetesServiceMonitors:
+          enabled: false
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

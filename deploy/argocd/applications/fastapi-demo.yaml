@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo
+  namespace: argo-cd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/testruction/fastapi-sqlalchemy-cockroachdb'
+    path: chart
+    targetRevision: HEAD
+    helm:
+      parameters:
+        - name: backend.service.port
+          value: '18180'
+        - name: backend.service.type
+          value: LoadBalancer
+        - name: frontend.service.type
+          value: LoadBalancer
+        - name: frontend.service.port
+          value: '18080'
+        - name: backend.metrics.serviceMonitor.enabled
+          value: 'true'
+        - name: frontend.metrics.serviceMonitor.enabled
+          value: 'true'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: fastapi-demo
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
