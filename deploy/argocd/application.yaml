@@ -58,7 +58,7 @@ spec:
           image:
             registry: ghcr.io
             repository: testruction/backstage
-            tag: 1.1.0-rc2
+            tag: 1.2.0-alpha1
           # extraEnvVarsSecrets:
           #   - backstage-env
           appConfig:
@@ -108,12 +108,12 @@ spec:
                   #   ca: # if you have a CA file and want to verify it you can uncomment this section
                   #     $file: <file-path>/ca/server.crt
 
-            integrations:
-              github: []
-                # - host: github.com
-                  # This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
-                  # about setting up the GitHub integration here: https://backstage.io/docs/getting-started/configuration#setting-up-a-github-integration
-                  # token: ${GITHUB_TOKEN}
+            integrations: {}
+              # This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
+              # about setting up the GitHub integration here: https://backstage.io/docs/getting-started/configuration#setting-up-a-github-integration
+              # github:
+              #   - host: github.com
+              #     token: ${GITHUB_TOKEN}
                 ### Example for how to add your GitHub Enterprise instance using the API:
                 # - host: ghe.example.net
                 #   apiBaseUrl: https://ghe.example.net/api/v3
@@ -158,9 +158,13 @@ spec:
                 - allow: [Component, System, API, Resource, Location]
               locations:
                 - type: url
-                  target: https://github.com/backstage/backstage-tutorial/blob/master/catalog/core/locations.yaml
+                  target: https://github.com/testruction/backstage-tutorial/blob/main/service-catalog/core/locations.yaml
                   rules:
                     - allow: [User, Group, Domain]
+                - type: url
+                  target: https://github.com/testruction/fastapi-sqlalchemy-cockroachdb/blob/prometheus/catalog-info.yaml
+                - type: url
+                  target: https://github.com/testruction/backstage-tutorial/blob/main/service-catalog/paypal/paypal.yaml
             kubernetes:
               serviceLocatorMethod:
                 type: multiTenant
@@ -175,3 +179,14 @@ spec:
 
             prometheus:
               proxyPath: /prometheus0/api
+
+            argocd:
+              # username: admin
+              # password: admin
+              appLocatorMethods:
+                - type: 'config'
+                  instances:
+                    - name: argocd
+                      url: http://gitops-argo-server.argo-cd:10080
+                      token: ${ARGOCD_AUTH_TOKEN}
+
