@@ -3,6 +3,8 @@ set -euo pipefail
 
 # Customize local development environment
 # ----------------------------------------
+BS_ARGO_TOKEN=$(argocd account generate-token --account backstage)
+export BS_ARGO_TOKEN
 yq -i '
   .app.listen.host = "0.0.0.0" |
   .app.listen.port = 3000 |
@@ -25,8 +27,6 @@ yq -i '
 
 # Customize Argo CD application deployment
 # ----------------------------------------
-BS_ARGO_TOKEN=$(argocd account generate-token --account backstage)
-export BS_ARGO_TOKEN
 
 yq -i '
   .spec.source.helm.valuesObject.backstage.appConfig.argocd.appLocatorMethods[0].instances[0].token = strenv(BS_ARGO_TOKEN)
@@ -36,4 +36,4 @@ unset BS_ARGO_TOKEN
 
 kubectl apply -f ./deploy/argocd/applications/backstage-rbac.yaml
 
-argocd app create backstage -f ./deploy/argocd/applications/backstage.yaml
+argocd app create backstage --upsert -f ./deploy/argocd/applications/backstage.yaml

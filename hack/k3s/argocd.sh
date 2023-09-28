@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-
-#!/usr/bin/env bash
-set -euo pipefail
+# set -euo pipefail
 
 sudo curl -sSL -o /usr/local/bin/argocd \
   https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
@@ -9,15 +7,15 @@ sudo chmod +x /usr/local/bin/argocd
 
 ADMIN_PWD="admin"
 ADMIN_BCRYPT=$(argocd account bcrypt --password $ADMIN_PWD)
+
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
 
 helm upgrade --install \
-  --wait \
   --namespace argo-cd \
   --create-namespace \
   --set configs.secret.argocdServerAdminPassword="${ADMIN_BCRYPT}" \
-  --set server.extraArgs[0]="--insecure" \
+  --set configs.params.server.insecure=true \
   --set server.service.type="LoadBalancer" \
   --set server.service.servicePortHttp="10080" \
   --set controller.metrics.enabled="true" \
@@ -39,8 +37,6 @@ helm upgrade --install \
   --set notifications.metrics.serviceMonitor.enabled="false" \
   gitops argo/argo-cd
 
-argocd login  localhost:10080 --insecure --plaintext --username "admin" --password "${ADMIN_PWD}"
-
 # GitOps account
 kubectl -n argo-cd patch configmap/argocd-cm \
 --type='json' \
@@ -55,3 +51,18 @@ kubectl -n argo-cd patch configmap/argocd-cm \
 kubectl -n argo-cd patch configmap/argocd-rbac-cm \
 --type='json' \
 --patch '[{"op": "add", "path": "/data/policy.csv", "value": "g, sysops, role:admin\ng, backstage, role:readonly\n"}]'
+
+sleep 5s
+
+echo -n "Waiting for Argo Server deployment."
+until [[ $(kubectl get pods -n argo-cd -l app.kubernetes.io/name=argocd-server -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') == "True" ]]
+do
+  echo -n '.'
+  sleep 1s
+done
+echo " DONE"
+
+argocd login localhost:10080 \
+  --insecure \
+  --username='admin' \
+  --password='admin'
