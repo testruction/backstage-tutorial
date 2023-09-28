@@ -8,15 +8,17 @@ export BS_ARGO_TOKEN
 yq -i '
   .app.listen.host = "0.0.0.0" |
   .app.listen.port = 3000 |
-  .app.baseUrl = strenv(KC_FRONTEND_URL) |
+  .app.baseUrl = "http://localhost:3000" |
   .backend.listen.host = "0.0.0.0" |
   .backend.listen.port = 7007 |
-  .backend.baseUrl = strenv(KC_BACKEND_URL) |
-  .backend.cors.origin = strenv(KC_FRONTEND_URL) |
+  .backend.baseUrl = "http://localhost:7007" |
+  .backend.cors.origin = "http://localhost:3000" |
   .catalog.locations[0].type = "file" |
   .catalog.locations[0].target = "../../../web-app/catalog-info.yaml" |
   .kubernetes.serviceLocatorMethod.type = "multiTenant" |
   .kubernetes.clusterLocatorMethods[0].type = "localKubectlProxy" |
+  .proxy.'/prometheus0/api'.target = "http://localhost:9090/api/v1/" |
+  .prometheus.proxyPath = "/prometheus0/api" |
   .argocd.username = "admin" |
   .argocd.password = "admin" |
   .argocd.appLocatorMethods[0].type = "config" |
