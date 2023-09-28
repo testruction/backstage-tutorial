@@ -188,6 +188,6 @@ spec:
                 - type: 'config'
                   instances:
                     - name: argocd
-                      url: http://gitops-argo-server.argo-cd:10080
+                      url: http://gitops-argocd-server.argo-cd:10080
                       token: ${ARGOCD_AUTH_TOKEN}
 
