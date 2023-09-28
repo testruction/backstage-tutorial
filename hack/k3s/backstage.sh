@@ -27,6 +27,7 @@ yq -i '
 
 # Customize Argo CD application deployment
 # ----------------------------------------
+cp -vf ./deploy/argocd/applications/backstage.yaml ./deploy/argocd/applications/backstage.local.yaml
 
 yq -i '
   .spec.source.helm.valuesObject.backstage.appConfig.argocd.appLocatorMethods[0].instances[0].token = strenv(BS_ARGO_TOKEN)
@@ -36,4 +37,4 @@ unset BS_ARGO_TOKEN
 
 kubectl apply -f ./deploy/argocd/applications/backstage-rbac.yaml
 
-argocd app create backstage --upsert -f ./deploy/argocd/applications/backstage.yaml
+argocd app create backstage --upsert -f ./deploy/argocd/applications/backstage.local.yaml
