@@ -122,6 +122,7 @@ function argocd_config()
   .argocd.appLocatorMethods[0].instances[0].token = strenv(BS_ARGO_TOKEN)
   ' app-config.local.yaml
 }
+
 core_config
 # auth_config
 techdocs_config
