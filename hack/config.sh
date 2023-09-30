@@ -6,7 +6,7 @@ function core_config()
   touch app-config.local.yaml
 
   yq -i '
-  .organization.name = "Testruction" |
+  .organization.name = "Testruction.io" |
   .permission.enabled = true |
   .app.title = "Backstage Demo" |
   .app.listen.host = "0.0.0.0" |
