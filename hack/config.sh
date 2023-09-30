@@ -1,58 +1,59 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 function core_config()
 {
-    touch app-config.local.yaml
+  touch app-config.local.yaml
 
-    yq -i '
-    .organization.name = "Testruction" |
-    .permission.enabled = true |
-    .app.title = "Backstage Demo" |
-    .app.listen.host = "0.0.0.0" |
-    .app.listen.host line_comment = "Required for Docker/WSL2" |
-    .app.listen.port = 3000 |
-    .app.baseUrl = "http://localhost:3000" |
-    .backend.listen.host = "0.0.0.0" |
-    .backend.listen.host line_comment = "Required for Docker/WSL2" |
-    .backend.listen.port = 7007 |
-    .backend.baseUrl = "http://localhost:7007" |
-    .backend.cors.origin = "http://localhost:3000" |
-    .backend.auth.keys[0].secret = "${FRONTEND_AUTH_KEY}" |
-    .backend.csp.default-src[0] = "'self'" |
-    .backend.csp.default-src[1] = "raw.githubusercontent.com" |
-    .backend.csp.img-src[0] = "'self'" |
-    .backend.csp.img-src[1] = "data:"
-    ' app-config.local.yaml
+  yq -i '
+  .organization.name = "Testruction" |
+  .permission.enabled = true |
+  .app.title = "Backstage Demo" |
+  .app.listen.host = "0.0.0.0" |
+  .app.listen.host line_comment = "Required for Docker/WSL2" |
+  .app.listen.port = 3000 |
+  .app.baseUrl = "http://localhost:3000" |
+  .backend.listen.host = "0.0.0.0" |
+  .backend.listen.host line_comment = "Required for Docker/WSL2" |
+  .backend.listen.port = 7007 |
+  .backend.baseUrl = "http://localhost:7007" |
+  .backend.cors.origin = "http://localhost:3000" |
+  .backend.auth.keys[0].secret = "${FRONTEND_AUTH_KEY}" |
+  .backend.csp.default-src[0] = "'self'" |
+  .backend.csp.default-src[1] = "raw.githubusercontent.com" |
+  .backend.csp.img-src[0] = "'self'" |
+  .backend.csp.img-src[1] = "data:"
+  ' app-config.local.yaml
 }
 
 function auth_config()
 {
-    yq -i '
-    .auth.environment = "development" |
-    .auth.providers.github.development.clientId = "${GITHUB_CLIENT_ID}" |
-    .auth.providers.github.development.clientSecret = "${GITHUB_CLIENT_SECRET}"
-    ' app-config.local.yaml
+  yq -i '
+  .auth.environment = "development" |
+  .auth.providers.github.development.clientId = "${GITHUB_CLIENT_ID}" |
+  .auth.providers.github.development.clientSecret = "${GITHUB_CLIENT_SECRET}"
+  ' app-config.local.yaml
 }
 
 function techdocs_config()
 {
-    yq -i '
-    .techdocs.sanitizer.allowedIframeHosts[0] = "www.github.com" |
-    .techdocs.sanitizer.allowedIframeHosts[1] = "www.youtube.com" |
-    .techdocs.generator.builder = "local" |
-    .techdocs.generator.runIn = "docker" |
-    .techdocs.generator.dockerImage = "spotify/techdocs" |
-    .techdocs.generator.pullImage = true |
-    .techdocs.publisher.type = "local"
-    ' app-config.local.yaml
+  yq -i '
+  .techdocs.sanitizer.allowedIframeHosts[0] = "www.github.com" |
+  .techdocs.sanitizer.allowedIframeHosts[1] = "www.youtube.com" |
+  .techdocs.generator.builder = "local" |
+  .techdocs.generator.runIn = "docker" |
+  .techdocs.generator.dockerImage = "spotify/techdocs" |
+  .techdocs.generator.pullImage = true |
+  .techdocs.publisher.type = "local"
+  ' app-config.local.yaml
 }
 
 function github_config()
 {
-    yq -i '
-    .integrations.github[0].host = "github.com" |
-    .integrations.github[0].token = "${GITHUB_INTEGRATION_TOKEN}"
-    ' app-config.local.yaml
+  yq -i '
+  .integrations.github[0].host = "github.com" |
+  .integrations.github[0].token = "${GITHUB_INTEGRATION_TOKEN}"
+  ' app-config.local.yaml
 }
 
 function core_catalogue_config()
