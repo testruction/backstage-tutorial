@@ -107,7 +107,7 @@ function kubernetes_config()
 {
   yq -i '
   .kubernetes.serviceLocatorMethod.type = "multiTenant" |
-  .kubernetes.clusterLocatorMethods[0].type = "localKubectlProxy" |
+  .kubernetes.clusterLocatorMethods[0].type = "localKubectlProxy"
   ' app-config.local.yaml
 }
 
