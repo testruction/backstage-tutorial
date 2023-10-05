@@ -89,7 +89,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: oders
+  name: orders
   description: Ordering API
   tags:
     - rest
