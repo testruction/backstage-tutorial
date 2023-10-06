@@ -26,7 +26,7 @@ spec:
   owner: weaveworks
   system: sock-shop
   dependsOff: []
-  dependsOn: []
+  dependsOn: [component:payment]
   providesApis: []
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-resource
@@ -34,10 +34,10 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: orders-db
-  description: Database dedicated the ordering capabilities
-  annotations:
-    backstage.io/kubernetes-id: orders-db
-    backstage.io/kubernetes-namespace: sock-stop
+  description: Database schema dedicated the ordering capabilities
+#  annotations:
+#    backstage.io/kubernetes-id: orders-db
+#    backstage.io/kubernetes-namespace: sock-stop
 spec:
   type: database
   owner: weaveworks
