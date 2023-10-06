@@ -27,7 +27,7 @@ spec:
   system: sock-shop
   dependsOff: []
   dependsOn: 
-      - component:payment
+      - api:payment
   providesApis: []
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-resource
