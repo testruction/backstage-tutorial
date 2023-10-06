@@ -26,7 +26,8 @@ spec:
   owner: weaveworks
   system: sock-shop
   dependsOff: []
-  dependsOn: [component:payment]
+  dependsOn: 
+      - component:payment
   providesApis: []
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-resource
