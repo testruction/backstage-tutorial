@@ -17,3 +17,4 @@ spec:
     - ./session-db.yaml
     - ./shipping.yaml
     - ./user.yaml
+    - ./orders.yaml
