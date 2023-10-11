@@ -49,6 +49,3 @@ spec:
   lifecycle: production
   owner: weaveworks
   system: sock-shop
-  definition:
-  dependsOff: []
-  dependsOn: resource:rabbitmq
