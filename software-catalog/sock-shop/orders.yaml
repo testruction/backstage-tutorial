@@ -81,7 +81,6 @@ spec:
   lifecycle: production
   owner: weaveworks
   system: sock-shop
-  sourceUrl: https://github.com/microservices-demo/orders
   dependsOn:
     - resource:orders-db
     - api:payment
