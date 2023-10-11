@@ -26,7 +26,11 @@ spec:
   owner: weaveworks
   system: sock-shop
   dependsOff: []
-  dependsOn: []
+  dependsOn: 
+      - api:payment
+      - api:shipping
+      - api:user
+      - api:carts
   providesApis: []
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-resource
@@ -104,8 +108,4 @@ spec:
   definition:
     $text: https://github.com/microservices-demo/orders/blob/master/api-spec/orders.json
   dependsOff: []
-  dependsOn: 
-      - api:payment
-      - api:shipping
-      - api:user
-      - api:carts
+  dependsOn: []
