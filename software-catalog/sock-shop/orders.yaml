@@ -107,3 +107,5 @@ spec:
   dependsOn: 
       - api:payment
       - api:shipping
+      - api:user
+      - api:carts
