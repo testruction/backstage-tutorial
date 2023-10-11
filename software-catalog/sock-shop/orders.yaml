@@ -31,7 +31,7 @@ spec:
       - api:shipping
       - api:user
       - api:carts
-  providesApis: []
+  providesApis: [api:orders]
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-resource
 apiVersion: backstage.io/v1alpha1
