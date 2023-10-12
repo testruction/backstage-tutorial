@@ -66,7 +66,7 @@ metadata:
       slo:sli_error:ratio_rate5m{sloth_service="orders"}
     backstage.io/kubernetes-id: orders
     backstage.io/kubernetes-namespace: sock-shop
-    backstage.io/source-location: url:https://github.com/microservices-demo/orders/
+    github.com/project-slug: microservices-demo/orders
   links:
     - url: https://microservices-demo.github.io/docs
       title: Documentation
