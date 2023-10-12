@@ -14,6 +14,7 @@ metadata:
       slo:sli_error:ratio_rate5m{sloth_service="shipping"}
     backstage.io/kubernetes-id: shipping
     backstage.io/kubernetes-namespace: sock-shop
+    backstage.io/source-location: url:https://github.com/microservices-demo/shipping/
   links:
     - url: https://microservices-demo.github.io/docs
       title: Documentation
