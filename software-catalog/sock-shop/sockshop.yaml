@@ -1,0 +1,13 @@
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-system
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: sock-shop
+  description: The Microservices Demo website.
+  backstage.io/source-location: url:https://github.com/microservices-demo/payment/
+spec:
+  owner: Weaveworks
+  domain: retail
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component

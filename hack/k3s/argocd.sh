@@ -18,6 +18,7 @@ helm upgrade --install \
   --set configs.params.server.insecure=true \
   --set server.service.type="LoadBalancer" \
   --set server.service.servicePortHttp="10080" \
+  --set server.service.servicePortHttps="10443" \
   --set controller.metrics.enabled="true" \
   --set controller.metrics.serviceMonitor.enabled="true" \
   --set dex.enabled="false" \

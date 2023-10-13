@@ -16,6 +16,8 @@ metadata:
       slo:sli_error:ratio_rate5m{sloth_service="user-db"}
     backstage.io/kubernetes-id: user-db
     backstage.io/kubernetes-namespace: sock-shop
+    github.com/project-slug: microservices-demo/user
+    backstage.io/source-location: url:https://github.com/microservices-demo/user/
   links:
     - url: https://microservices-demo.github.io/docs
       title: Documentation
@@ -62,6 +64,7 @@ metadata:
       slo:sli_error:ratio_rate5m{sloth_service="user"}
     backstage.io/kubernetes-id: user
     backstage.io/kubernetes-namespace: sock-shop
+    backstage.io/source-location: url:https://github.com/microservices-demo/user/
   links:
     - url: https://microservices-demo.github.io/docs
       title: Documentation

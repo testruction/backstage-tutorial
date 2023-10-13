@@ -27,17 +27,17 @@ spec:
   system: sock-shop
   dependsOff: []
   dependsOn: []
-  providesApis: []
+  providesApis: [api:orders]
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-resource
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: orders-db
-  description: Database dedicated the ordering capabilities
-  annotations:
-    backstage.io/kubernetes-id: orders-db
-    backstage.io/kubernetes-namespace: sock-stop
+  description: Database schema dedicated the ordering capabilities
+#  annotations:
+#    backstage.io/kubernetes-id: orders-db
+#    backstage.io/kubernetes-namespace: sock-stop
 spec:
   type: database
   owner: weaveworks
@@ -66,6 +66,8 @@ metadata:
       slo:sli_error:ratio_rate5m{sloth_service="orders"}
     backstage.io/kubernetes-id: orders
     backstage.io/kubernetes-namespace: sock-shop
+    github.com/project-slug: microservices-demo/orders
+    backstage.io/source-location: url:https://github.com/microservices-demo/orders/
   links:
     - url: https://microservices-demo.github.io/docs
       title: Documentation
@@ -82,6 +84,10 @@ spec:
   system: sock-shop
   dependsOn:
     - resource:orders-db
+    - api:payment
+    - api:shipping
+    - api:user
+    - api:carts
   providesApis:
     - orders
 ---
@@ -103,3 +109,5 @@ spec:
   system: sock-shop
   definition:
     $text: https://github.com/microservices-demo/orders/blob/master/api-spec/orders.json
+  dependsOff: []
+  dependsOn: []

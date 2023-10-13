@@ -14,6 +14,8 @@ metadata:
       slo:sli_error:ratio_rate5m{sloth_service="front-end"}
     backstage.io/kubernetes-id: front-end
     backstage.io/kubernetes-namespace: sock-shop
+    github.com/project-slug: microservices-demo/front-end
+    backstage.io/source-location: url:https://github.com/microservices-demo/front-end/
   links:
     - url: https://microservices-demo.github.io/docs
       title: Documentation

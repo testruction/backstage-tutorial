@@ -15,6 +15,7 @@ metadata:
       slo:sli_error:ratio_rate5m{sloth_service="carts-db"}
     backstage.io/kubernetes-id: carts-db
     backstage.io/kubernetes-namespace: sock-shop
+    backstage.io/source-location: url:https://github.com/microservices-demo/carts/
   links:
     - url: https://microservices-demo.github.io/docs
       title: Documentation
@@ -66,6 +67,7 @@ metadata:
       slo:sli_error:ratio_rate5m{sloth_service="carts"}
     backstage.io/kubernetes-id: carts
     backstage.io/kubernetes-namespace: sock-shop
+    github.com/project-slug: microservices-demo/carts
   links:
     - url: https://microservices-demo.github.io/docs
       title: Documentation

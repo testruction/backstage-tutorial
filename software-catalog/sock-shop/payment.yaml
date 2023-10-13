@@ -13,6 +13,8 @@ metadata:
       slo:sli_error:ratio_rate5m{sloth_service="payment"}
     backstage.io/kubernetes-id: payment
     backstage.io/kubernetes-namespace: sock-shop
+    github.com/project-slug: microservices-demo/payment
+    backstage.io/source-location: url:https://github.com/microservices-demo/payment/
   links:
     - url: https://microservices-demo.github.io/docs
       title: Documentation
