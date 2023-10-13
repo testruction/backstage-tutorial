@@ -7,7 +7,7 @@ COPY package.json yarn.lock ./
 COPY packages packages
 
 # Comment this out if you don't have any internal plugins
-# COPY plugins plugins
+COPY plugins plugins
 
 RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
 
@@ -18,9 +18,8 @@ FROM node:18-bookworm-slim AS build
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && \
-    apt-get install -y --no-install-recommends python3 g++ build-essential && \
-    yarn config set python /usr/bin/python3 && \
-    npm install -g node-gyp
+    apt-get install -y --no-install-recommends python3 g++ build-essential git && \
+    yarn config set python /usr/bin/python3
 
 # Install sqlite3 dependencies. You can skip this if you don't use sqlite3 in the image,
 # in which case you should also move better-sqlite3 to "devDependencies" in package.json.
@@ -57,19 +56,30 @@ FROM node:18-bookworm-slim
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update \
-    && apt-get install -y --no-install-recommends python3 g++ build-essential \
-    && apt-get autoremove -y --purge \
-    && apt-get clean \
-    && rm -r /var/lib/apt/lists/* \
-    && yarn config set python /usr/bin/python3 \
-    && npm install -g node-gyp
+    && apt-get install -y --no-install-recommends \
+        'python3' \
+        'g++' \
+        'build-essential' \
+        'git' \
+        'python3' \
+        'python3-pip' \
+        'python3-venv' \
+        'graphviz' \
+        'plantuml' \
+    && yarn config set python /usr/bin/python3
+
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+RUN pip3 install mkdocs-techdocs-core
 
 # Install sqlite3 dependencies. You can skip this if you don't use sqlite3 in the image,
 # in which case you should also move better-sqlite3 to "devDependencies" in package.json.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update \
-    && apt-get install -y --no-install-recommends libsqlite3-dev
+    apt-get update && \
+    apt-get install -y --no-install-recommends libsqlite3-dev
 
 # From here on we use the least-privileged `node` user to run the backend.
 USER node
@@ -90,10 +100,8 @@ COPY --from=build --chown=node:node /app/packages/backend/dist/bundle/ ./
 
 # Copy any other files that we need at runtime
 COPY --chown=node:node app-config.yaml ./
-COPY --chown=node:node app-config.production.yaml ./
 
 # This switches many Node.js dependencies to production mode.
 ENV NODE_ENV production
 
-# CMD ["node", "packages/backend", "--config", "app-config.yaml"]
-CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
+CMD ["node", "packages/backend", "--config", "app-config.yaml"]
