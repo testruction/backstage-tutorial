@@ -32,7 +32,7 @@ jobs:
           cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/backstage:cache
           cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/backstage:cache
           context: './'
-          file: ./containers/backend/Dockerfile
+          file: ./containers/all-in-one/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
