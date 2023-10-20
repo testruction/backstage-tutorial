@@ -29,6 +29,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/backstage:cache
+          cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/backstage:cache
           context: './'
           file: ./containers/backend/Dockerfile
           push: true
