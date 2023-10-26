@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: backstage-tutorial
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: https://github.com/testruction/backstage-tutorial
+  ref:
+    branch: main
+  ignore: |
+    # exclude all
+    /*
+    # include charts directory
+    !/chart/ 
