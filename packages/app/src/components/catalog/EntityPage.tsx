@@ -75,6 +75,8 @@ import {
   EntityFluxOCIRepositoriesCard,
   EntityFluxHelmRepositoriesCard,
 } from '@weaveworksoss/backstage-plugin-flux';
+
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
