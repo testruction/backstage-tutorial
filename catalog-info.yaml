@@ -1,13 +1,75 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: developer-portal
+  description: Developper portal
+spec:
+  owner: group:testructer
+  domain: platform-engineering
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: backstage
+  description: Backstage database
+  tags:
+    - database
+    - schema
+  links:
+    - title: Site Web officiel de Backstage
+      url: http://backstage.io
+      icon: docs
+spec:
+  type: database
+  owner: group:testructer
+  system: developer-portal
+---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: backage-tutorial
-  description: An example of a Backstage application.
-  # Example for optional annotations
-  # annotations:
-  #   github.com/project-slug: backstage/backstage
-  #   backstage.io/techdocs-ref: dir:.
+  name: backstage-db
+  description: Backstage Database
+  tags:
+    - database-engine
+    - postgresql
+  links:
+    - title: Site Web officiel de Backstage
+      url: http://backstage.io
+      icon: docs
 spec:
-  type: website
-  owner: john@example.com
+  type: service
   lifecycle: experimental
+  owner: group:testructer
+  system: developer-portal
+  dependsOn:
+    - resource:backstage
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: backstage-app
+  description: Backstage-app application.
+  annotations:
+    github.com/project-slug: testruction/backstage-tutorial
+    backstage.io/adr-location: docs/adrs
+    backstage.io/kubernetes-id: backstage
+    backstage.io/kubernetes-namespace: backstage
+    backstage.io/techdocs-ref: dir:.
+    argocd/app-name: backstage
+  links:
+    - title: Backstage official website
+      url: http://backstage.io
+      icon: docs
+  tags:
+    - "typescript"
+    - "nodejs"
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:testructer
+  system: developer-portal
+  dependsOn:
+    - resource:backstage
+  providesApis: []
+  consumesApis: []

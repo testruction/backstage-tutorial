@@ -25,3 +25,12 @@ metadata:
   description: Sales stuff on the Web
 spec:
   owner: testructer
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-domain
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: platform-engineering
+  description: Platform Engineering
+spec:
+  owner: testructer
