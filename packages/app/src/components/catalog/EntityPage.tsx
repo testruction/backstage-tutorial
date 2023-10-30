@@ -69,6 +69,17 @@ import {
   EntityPrometheusAlertCard,  
   EntityPrometheusGraphCard,
 } from '@roadiehq/backstage-plugin-prometheus';
+import {
+  EntityFluxGitRepositoriesCard,
+  EntityFluxHelmReleasesCard,
+  EntityFluxOCIRepositoriesCard,
+  EntityFluxKustomizationsCard,
+  EntityFluxHelmRepositoriesCard,
+  EntityFluxDeploymentsCard,
+  EntityFluxSourcesCard,
+  EntityFluxImagePoliciesCard,
+} from '@weaveworksoss/backstage-plugin-flux';
+
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -145,6 +156,9 @@ const overviewContent = (
       </EntitySwitch.Case>
     </EntitySwitch>
 
+    <Grid item md={4} xs={12}>
+      <EntityFluxHelmReleasesCard />
+    </Grid>
 
     <Grid item md={6}>
       <EntityPrometheusAlertCard />
@@ -212,6 +226,37 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
     </EntityLayout.Route>
+
+    <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
+      <Grid container spacing={3} alignItems="stretch">
+        <Grid item md={12}>
+          <EntityFluxHelmReleasesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxKustomizationsCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxHelmRepositoriesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxGitRepositoriesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxOCIRepositoriesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxDeploymentsCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxSourcesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxImagePoliciesCard />
+        </Grid>
+      </Grid>
+    </EntityLayout.Route>
+
+
   </EntityLayout>
 );
 

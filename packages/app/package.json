@@ -48,6 +48,7 @@
     "@material-ui/icons": "^4.9.1",
     "@roadiehq/backstage-plugin-argo-cd": "^2.3.4",
     "@roadiehq/backstage-plugin-prometheus": "^2.7.0",
+    "@weaveworksoss/backstage-plugin-flux": "^0.8.3",
     "history": "^5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
