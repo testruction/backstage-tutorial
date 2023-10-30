@@ -6,3 +6,5 @@ packages/*/dist
 packages/*/node_modules
 plugins/*/dist
 plugins/*/node_modules
+!packages/backend/dist/skeleton.tar.gz
+!packages/backend/dist/bundle.tar.gz
