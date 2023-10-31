@@ -3,8 +3,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: fastapi-demo
-  description: Demo of a FastAPI frontend/backend application leveraging SqlAlchemy and CoackroachDB
+  name: core
+  description: Central place to manage domains and groups
 spec:
   targets:
     - ./domains.yaml
