@@ -1,0 +1,20 @@
+:80 {
+	# Set this path to your site's directory.
+	root * /usr/share/caddy
+	file_server
+	# Configure logging
+	log {
+		output stdout
+		level INFO
+	}
+}
+
+:8080 {
+	root * /usr/share/caddy/static
+	# Enable the static file server.
+	# https://caddyserver.com/docs/caddyfile/directives/file_server
+	file_server browse
+}
+
+# Refer to the Caddy docs for more information:
+# https://caddyserver.com/docs/caddyfile

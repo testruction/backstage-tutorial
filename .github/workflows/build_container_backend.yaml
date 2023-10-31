@@ -16,8 +16,8 @@ jobs:
       fail-fast: false
       matrix:
         component:
-          - techdocs
           - all-in-one
+          - backend
 
     steps:
       - name: checkout
