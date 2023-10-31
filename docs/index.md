@@ -7,7 +7,7 @@ keywords:
 slug: index
 ---
 
-# What is platform engineering
+## What is platform engineering
 
 Platform engineering is a specialized field within the broader domain of software engineering and infrastructure management. It focuses on building and maintaining the foundational technologies and systems that enable the development, deployment, and scaling of applications and services within an organization. The primary goal of platform engineering is to create a stable, efficient, and secure environment for software development and operation.
 

@@ -1,0 +1,9 @@
+site_name: Démonstrateur Backstage
+site_description: Documentation du portail développeur.
+
+nav:
+  - Welcome: index.md
+
+plugins:
+  - diagrams
+  - search
