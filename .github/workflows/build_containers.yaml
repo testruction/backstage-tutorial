@@ -1,4 +1,4 @@
-name: Build and push Docker image (multi-stage)
+name: Build and push Docker images
 on:
   # release:
   #   types: [published, prereleased]
@@ -14,6 +14,10 @@ jobs:
 
     strategy:
       fail-fast: false
+      matrix:
+        component:
+          - techdocs
+          - all-in-one
 
     steps:
       - name: checkout
@@ -36,16 +40,16 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/backstage/all-in-one:cache
-          cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/backstage/all-in-one:cache
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/backstage/${{ matrix.component }}:cache
+          cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/backstage/${{ matrix.component }}:cache
           context: './'
-          file: ./containers/all-in-one/Dockerfile
+          file: ./containers/${{ matrix.component }}/Dockerfile
           push: true
           # platforms: linux/amd64,linux/arm64
           platforms: linux/amd64
           tags: |
-            ghcr.io/${{ github.repository_owner }}/backstage/all-in-one:latest
-            ghcr.io/${{ github.repository_owner }}/backstage/all-in-one:${{ steps.get_version.outputs.VERSION }}
+            ghcr.io/${{ github.repository_owner }}/backstage/${{ matrix.component }}:latest
+            ghcr.io/${{ github.repository_owner }}/backstage/${{ matrix.component }}:${{ steps.get_version.outputs.VERSION }}
           labels: |
             org.opencontainers.image.description=Docker image generated from the latest Backstage release; this contains what you would get out of the box by running npx @backstage/create-app and building a Docker image from the generated source. This is meant to ease the process of evaluating Backstage for the first time, but also has the severe limitation that there is no way to install additional plugins relevant to your infrastructure.
             org.opencontainers.image.source=https://github.com/${{ github.repository }}

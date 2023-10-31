@@ -9,7 +9,7 @@ COPY packages packages
 # Comment this out if you don't have any internal plugins
 COPY plugins plugins
 
-RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
+RUN find packages \! -name "package.json" \! -name "src" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
 
 # Stage 2 - Install dependencies and build packages
 FROM node:18-bookworm-slim AS build
@@ -72,7 +72,12 @@ ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN pip3 install mkdocs-techdocs-core
+RUN pip3 install --no-cache \
+    'mkdocs-techdocs-core' \
+    'mkdocs-material' \
+    'mkdocs-mermaid-plugin' \
+    'mkdocs-monorepo-plugin' \
+    'mkdocs-diagrams'
 
 # Install sqlite3 dependencies. You can skip this if you don't use sqlite3 in the image,
 # in which case you should also move better-sqlite3 to "devDependencies" in package.json.
