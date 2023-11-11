@@ -255,8 +255,6 @@ const serviceEntityPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
-
-
   </EntityLayout>
 );
 
