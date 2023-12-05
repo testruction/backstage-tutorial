@@ -3,6 +3,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: shipping
+  namespace: demo
   description: Service that provides shipping capabilities.
   tags:
     - springboot
@@ -40,6 +41,7 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: shipping
+  namespace: demo
   description: Shipping API
   tags:
     - rest

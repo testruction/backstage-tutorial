@@ -3,6 +3,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: session-db
+  namespace: demo
   description: Redis that provides session cache to front-end.
   tags:
     - redis
@@ -35,6 +36,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: session
+  namespace: demo
   description: Shipping message Queue
 spec:
   type: queue

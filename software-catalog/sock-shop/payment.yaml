@@ -3,6 +3,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: payment
+  namespace: demo
   description: Service that provides payment services
   tags:
     - golang
@@ -39,6 +40,7 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: payment
+  namespace: demo
   description: Payment API
   tags:
     - rest

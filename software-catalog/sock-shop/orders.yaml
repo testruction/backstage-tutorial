@@ -4,6 +4,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: orders-db
+  namespace: demo
   description: MongoDB engine that provides ordering capabilities
   tags:
     - database-engine
@@ -34,6 +35,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: orders-db
+  namespace: demo
   description: Database schema dedicated the ordering capabilities
 #  annotations:
 #    backstage.io/kubernetes-id: orders-db
@@ -55,6 +57,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: orders
+  namespace: demo
   description: Service that provides ordering capabilities
   tags:
     - springboot
@@ -96,6 +99,7 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: orders
+  namespace: demo
   description: Ordering API
   tags:
     - rest

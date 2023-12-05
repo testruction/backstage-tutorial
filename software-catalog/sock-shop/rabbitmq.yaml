@@ -3,6 +3,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: rabbitmq
+  namespace: demo
   description: Service that provides shipping queue.
   tags:
     - rabbitmq
@@ -35,6 +36,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: rabbitmq
+  namespace: demo
   description: Shipping message Queue
 spec:
   type: queue

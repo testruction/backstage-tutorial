@@ -4,6 +4,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: user-db
+  namespace: demo
   description: MongoDB engine dedicated to user account database.
   tags:
     - database-engine
@@ -37,6 +38,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: user-db
+  namespace: demo
   description: PostgreSQL database dedicated to user account informations.
 spec:
   type: database
@@ -54,6 +56,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: user
+  namespace: demo
   description: Service that provides user account storage, to include cards and addresses.
   tags:
     - golang
@@ -89,6 +92,7 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: user
+  namespace: demo
   description: User account API
   tags:
     - rest

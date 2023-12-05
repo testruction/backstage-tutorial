@@ -4,6 +4,7 @@ apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: sock-shop
+  namespace: demo
   description: The Microservices Demo website.
   backstage.io/source-location: url:https://github.com/microservices-demo/payment/
 spec:

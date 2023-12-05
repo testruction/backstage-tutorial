@@ -4,6 +4,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: front-end
+  namespace: demo
   description: Front-end application that puts together all of the microservices under sock-shop
   tags:
     - nodejs

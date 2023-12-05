@@ -4,6 +4,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: catalogue-db
+  namespace: demo
   description: PostgreSQL database dedicated to catalogue/product information
   tags:
     - database-engine
@@ -34,6 +35,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: catalogue-db
+  namespace: demo
   description: PostgreSQL database dedicated to catalogue/product information
   annotations:
     backstage.io/kubernetes-id: catalogue-db
@@ -54,6 +56,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: catalogue
+  namespace: demo
   description: Service that provides catalogue/product information
   tags:
     - golang
@@ -90,6 +93,7 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: catalogue
+  namespace: demo
   description: Catalogue/Product API
   tags:
     - rest

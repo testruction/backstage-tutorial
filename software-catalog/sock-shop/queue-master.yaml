@@ -3,6 +3,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: queue-master
+  namespace: demo
   description: Service that provides reading from the shipping queue. Simulate the shipping process.
   tags:
     - springboot

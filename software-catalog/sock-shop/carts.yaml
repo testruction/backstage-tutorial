@@ -4,6 +4,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: carts-db
+  namespace: demo
   description: MongoDB engine that provides shopping carts database
   tags:
     - database-engine
@@ -35,6 +36,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: carts-db
+  namespace: demo
   description: Database dedicated to the shopping carts
   annotations:
     backstage.io/kubernetes-id: carts-db
@@ -56,6 +58,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: carts
+  namespace: demo
   description: Service that provides shopping carts for users
   tags:
     - springboot2
@@ -92,6 +95,7 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: carts
+  namespace: demo
   description: Shopping carts API
   tags:
     - rest
