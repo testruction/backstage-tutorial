@@ -4,6 +4,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
   name: sock-shop
+  namespace: demo
   description: A generic microservices application, built @weaveworks
 spec:
   targets:
