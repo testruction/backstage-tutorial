@@ -30,6 +30,7 @@ import techdocs from './plugins/techdocs';
 import search from './plugins/search';
 import kubernetes from './plugins/kubernetes';
 import argocd from './plugins/argocd';
+import linguist from './plugins/linguist';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
@@ -89,17 +90,19 @@ async function main() {
   const searchEnv = useHotMemoize(module, () => createEnv('search'));
   const kubernetesEnv = useHotMemoize(module, () => createEnv('kubernetes'));
   const argocdEnv = useHotMemoize(module, () => createEnv('argocd'));
+  const linguistEnv = useHotMemoize(module, () => createEnv('linguist'));
   const appEnv = useHotMemoize(module, () => createEnv('app'));
 
   const apiRouter = Router();
-  apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
   apiRouter.use('/catalog', await catalog(catalogEnv));
   apiRouter.use('/scaffolder', await scaffolder(scaffolderEnv));
   apiRouter.use('/auth', await auth(authEnv));
   apiRouter.use('/techdocs', await techdocs(techdocsEnv));
   apiRouter.use('/proxy', await proxy(proxyEnv));
   apiRouter.use('/search', await search(searchEnv));
+  apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
   apiRouter.use('/argocd', await argocd(argocdEnv));
+  apiRouter.use('/linguist', await linguist(linguistEnv));
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());

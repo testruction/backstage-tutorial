@@ -79,6 +79,10 @@ import {
   EntityFluxSourcesCard,
   EntityFluxImagePoliciesCard,
 } from '@weaveworksoss/backstage-plugin-flux';
+import {
+  isLinguistAvailable,
+  EntityLinguistCard
+} from '@backstage/plugin-linguist';
 
 
 const techdocsContent = (
@@ -147,6 +151,14 @@ const entityWarningContent = (
 const overviewContent = (
   <Grid container spacing={3} alignItems="stretch">
     {entityWarningContent}
+
+    <EntitySwitch>
+         <EntitySwitch.Case if={isLinguistAvailable}>
+             <Grid item md={6}>
+                 <EntityLinguistCard />
+             </Grid>
+         </EntitySwitch.Case>
+     </EntitySwitch>
 
     <EntitySwitch>
       <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>

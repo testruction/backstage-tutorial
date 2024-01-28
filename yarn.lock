@@ -2818,6 +2818,31 @@
     zod "^3.22.4"
     zod-to-json-schema "^3.21.4"
 
+"@backstage/plugin-catalog-backend-module-github@^0.4.7":
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-catalog-backend-module-github/-/plugin-catalog-backend-module-github-0.4.7.tgz#5123eb8a6f491d925d2d0ef399318412ab012a96"
+  integrity sha512-PrS7IH246I7+osfwJLO5f2UfOlUWpsrC5JZu3E5K3TIjaIiOW9VQxvKAzEj6bjJLfxj9jh8M5ag1Y8hANpsCNw==
+  dependencies:
+    "@backstage/backend-common" "^0.20.1"
+    "@backstage/backend-plugin-api" "^0.6.9"
+    "@backstage/backend-tasks" "^0.5.14"
+    "@backstage/catalog-client" "^1.5.2"
+    "@backstage/catalog-model" "^1.4.3"
+    "@backstage/config" "^1.1.1"
+    "@backstage/integration" "^1.8.0"
+    "@backstage/plugin-catalog-backend" "^1.16.1"
+    "@backstage/plugin-catalog-common" "^1.0.20"
+    "@backstage/plugin-catalog-node" "^1.6.1"
+    "@backstage/plugin-events-node" "^0.2.18"
+    "@octokit/graphql" "^5.0.0"
+    "@octokit/rest" "^19.0.3"
+    git-url-parse "^13.0.0"
+    lodash "^4.17.21"
+    minimatch "^5.1.2"
+    node-fetch "^2.6.7"
+    uuid "^8.0.0"
+    winston "^3.2.1"
+
 "@backstage/plugin-catalog-backend-module-scaffolder-entity-model@^0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@backstage/plugin-catalog-backend-module-scaffolder-entity-model/-/plugin-catalog-backend-module-scaffolder-entity-model-0.1.6.tgz#0ea62233a916b86bf3ae8ba09fd93ff007bac0f0"
@@ -2829,7 +2854,7 @@
     "@backstage/plugin-catalog-node" "^1.6.1"
     "@backstage/plugin-scaffolder-common" "^1.4.5"
 
-"@backstage/plugin-catalog-backend@^1.16.2":
+"@backstage/plugin-catalog-backend@^1.16.1", "@backstage/plugin-catalog-backend@^1.16.2":
   version "1.16.2"
   resolved "https://registry.yarnpkg.com/@backstage/plugin-catalog-backend/-/plugin-catalog-backend-1.16.2.tgz#fe4765d02d4cd8e17d3705bee5ecdbb7a03e5018"
   integrity sha512-aTTztezyaW1y1NaaWIZ++QANn4bCFFl0DUA/4JUW14A6hQJR8F3h+V/XRaM5kkkG8F2arzowwbfTREKiDU8Ezw==
@@ -3220,6 +3245,59 @@
     xterm "^5.2.1"
     xterm-addon-attach "^0.9.0"
     xterm-addon-fit "^0.8.0"
+
+"@backstage/plugin-linguist-backend@^0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-linguist-backend/-/plugin-linguist-backend-0.5.6.tgz#e016a02887e6b65551b5b28ff06e510835f20540"
+  integrity sha512-aa9KMPloHpCNshIvlbLwjC/B+YPiBlfkneLNmId8patBDC3r6JH5/WCZGpPuSyAZRz0rJr/eE981A08CbNWvVQ==
+  dependencies:
+    "@backstage/backend-common" "^0.20.1"
+    "@backstage/backend-plugin-api" "^0.6.9"
+    "@backstage/backend-tasks" "^0.5.14"
+    "@backstage/catalog-client" "^1.5.2"
+    "@backstage/catalog-model" "^1.4.3"
+    "@backstage/config" "^1.1.1"
+    "@backstage/errors" "^1.2.3"
+    "@backstage/plugin-auth-node" "^0.4.3"
+    "@backstage/plugin-catalog-node" "^1.6.1"
+    "@backstage/plugin-linguist-common" "^0.1.2"
+    "@backstage/types" "^1.1.1"
+    "@types/express" "*"
+    express "^4.18.1"
+    express-promise-router "^4.1.0"
+    fs-extra "^10.0.0"
+    knex "^3.0.0"
+    linguist-js "^2.5.3"
+    luxon "^2.0.2"
+    node-fetch "^2.6.7"
+    uuid "^8.3.2"
+    winston "^3.2.1"
+    yn "^4.0.0"
+
+"@backstage/plugin-linguist-common@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-linguist-common/-/plugin-linguist-common-0.1.2.tgz#cf32745d17a52e08d87ca5b4537842f230e877a3"
+  integrity sha512-PEkJfr/l9EqaH+DIL128eAyT3yZC/b2wIAl/zqfm/ctZisbEmfN+uNZzhtPqTYZxlgtIkCd3qEj204VFBnNCjw==
+
+"@backstage/plugin-linguist@^0.1.14":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-linguist/-/plugin-linguist-0.1.14.tgz#60cf9b3534c56b57ce8d53438d5d19702c607378"
+  integrity sha512-YXU1RJbrhZHs+AkyNtJD3wgriw+qbErPpSKobk3IrnVyHNy/JM38F87E8v3GuGK2FYPJHTnp7zFkSEZ93uwvkw==
+  dependencies:
+    "@backstage/catalog-model" "^1.4.3"
+    "@backstage/core-compat-api" "^0.1.1"
+    "@backstage/core-components" "^0.13.10"
+    "@backstage/core-plugin-api" "^1.8.2"
+    "@backstage/errors" "^1.2.3"
+    "@backstage/frontend-plugin-api" "^0.5.0"
+    "@backstage/plugin-catalog-react" "^1.9.3"
+    "@backstage/plugin-linguist-common" "^0.1.2"
+    "@material-ui/core" "^4.9.13"
+    "@material-ui/lab" "4.0.0-alpha.61"
+    "@types/react" "^16.13.1 || ^17.0.0"
+    luxon "^2.0.2"
+    react-use "^17.2.4"
+    slugify "^1.6.4"
 
 "@backstage/plugin-org@^0.6.19":
   version "0.6.19"
@@ -10624,6 +10702,7 @@ anymatch@^3.0.3, anymatch@~3.1.2:
     "@backstage/plugin-entity-validation" "^0.1.14"
     "@backstage/plugin-github-actions" "^0.6.10"
     "@backstage/plugin-kubernetes" "^0.11.4"
+    "@backstage/plugin-linguist" "^0.1.14"
     "@backstage/plugin-org" "^0.6.19"
     "@backstage/plugin-permission-react" "^0.4.19"
     "@backstage/plugin-scaffolder" "^1.17.1"
@@ -11320,7 +11399,7 @@ bignumber.js@^9.0.0:
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.1.2.tgz#b7c4242259c008903b13707983b5f4bbd31eda0c"
   integrity sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==
 
-binary-extensions@^2.0.0:
+binary-extensions@^2.0.0, binary-extensions@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
@@ -12227,7 +12306,7 @@ commander@^8.3.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
   integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
 
-commander@^9.1.0:
+commander@^9.1.0, "commander@^9.5.0 <10":
   version "9.5.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
   integrity sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==
@@ -12711,7 +12790,7 @@ cross-env@^7.0.0:
   dependencies:
     cross-spawn "^7.0.1"
 
-cross-fetch@^3.1.4:
+cross-fetch@^3.1.4, "cross-fetch@^3.1.8 <4":
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.8.tgz#0327eba65fd68a7d119f8fb2bf9334a1a7956f82"
   integrity sha512-cvA+JwZoU0Xq+h6WkMvAUqPEYy92Obet6UdKLfW60qn99ftItKjB5T+BkyWOFWe2pUyfQ+IJHmpOTznqk1M6Kg==
@@ -14605,7 +14684,7 @@ express-session@^1.17.1:
     safe-buffer "5.2.1"
     uid-safe "~2.1.5"
 
-express@^4.17.1, express@^4.17.3, express@^4.18.2:
+express@^4.17.1, express@^4.17.3, express@^4.18.1, express@^4.18.2:
   version "4.18.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.18.2.tgz#3fabe08296e930c796c19e3c516979386ba9fd59"
   integrity sha512-5/PsL6iGPdfQ/lKM1UuielYgv3BUoJfz1aUwU9vHZ+J7gyvwdQXFEBIEIaxeGf0GIcreATNyBExtalisDbuMqQ==
@@ -16822,6 +16901,11 @@ isarray@^2.0.5:
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-2.0.5.tgz#8af1e4c1221244cc62459faf38940d4e644a5723"
   integrity sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==
 
+"isbinaryfile@^4.0.10 <5":
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/isbinaryfile/-/isbinaryfile-4.0.10.tgz#0c5b5e30c2557a2f06febd37b7322946aaee42b3"
+  integrity sha512-iHrqe5shvBUcFbmZq9zOQHBoeOhZJu6RQGrDpBgenUm/Am+F3JM2MgQj+rK3Z601fzrL5gLZWtAPH2OBaSVcyw==
+
 isbinaryfile@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/isbinaryfile/-/isbinaryfile-5.0.0.tgz#034b7e54989dab8986598cbcea41f66663c65234"
@@ -18049,6 +18133,20 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
+linguist-js@^2.5.3:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/linguist-js/-/linguist-js-2.6.1.tgz#9c04a0d5c7031428f8ca50b034d2ae243e0f0b41"
+  integrity sha512-sFnn892fNaPBiOWXnORgR8UCPbr90DRPVWo9x+Aq7jXzPXCtDI12F++fWqZ67Cr9/G5/X1vS496tCbnR28Xi2g==
+  dependencies:
+    binary-extensions "^2.2.0"
+    commander "^9.5.0 <10"
+    common-path-prefix "^3.0.0"
+    cross-fetch "^3.1.8 <4"
+    ignore "^5.2.4"
+    isbinaryfile "^4.0.10 <5"
+    js-yaml "^4.1.0"
+    node-cache "^5.1.2"
+
 linkify-it@^3.0.1:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/linkify-it/-/linkify-it-3.0.3.tgz#a98baf44ce45a550efb4d49c769d07524cc2fa2e"
@@ -18413,6 +18511,11 @@ lunr@^2.3.9:
   version "2.3.9"
   resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.3.9.tgz#18b123142832337dd6e964df1a5a7707b25d35e1"
   integrity sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==
+
+luxon@^2.0.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-2.5.2.tgz#17ed497f0277e72d58a4756d6a9abee4681457b6"
+  integrity sha512-Yg7/RDp4nedqmLgyH0LwgGRvMEKVzKbUdkBYyCosbHgJ+kaOUx0qzSiSatVc3DFygnirTPYnMM2P5dg2uH1WvA==
 
 luxon@^3.0.0, luxon@^3.0.1, luxon@^3.3.0:
   version "3.4.3"
@@ -23241,6 +23344,11 @@ slide@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
   integrity sha512-NwrtjCg+lZoqhFU8fOwl4ay2ei8PaqCBOUV3/ektPY9trO1yQ1oXEfmHAhKArUVUr/hOHvy5f6AdP17dCM0zMw==
+
+slugify@^1.6.4:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.6.6.tgz#2d4ac0eacb47add6af9e04d3be79319cbcc7924b"
+  integrity sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==
 
 smart-buffer@^4.2.0:
   version "4.2.0"

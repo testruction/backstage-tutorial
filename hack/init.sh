@@ -21,13 +21,13 @@ function init_env()
   then
       eerror "La variable \"GITHUB_INTEGRATION_TOKEN\" value is absent in file \".env\""
       exit 1
-#   elif [[ -z ${GITHUB_CLIENT_ID} ]]
+#   elif [[ -z ${AUTH_GITHUB_CLIENT_ID} ]]
 #   then
-#       eerror "The \"GITHUB_CLIENT_ID\" value is absent in file \".env\""
+#       eerror "The \"AUTH_GITHUB_CLIENT_ID\" value is absent in file \".env\""
 #       exit 1
-#   elif [[ -z ${GITHUB_CLIENT_SECRET} ]]
+#   elif [[ -z ${AUTH_GITHUB_CLIENT_SECRET} ]]
 #   then
-#       eerror "La variable \"GITHUB_CLIENT_SECRET\" value is absent in file \".env\""
+#       eerror "La variable \"AUTH_GITHUB_CLIENT_SECRET\" value is absent in file \".env\""
 #       exit 1
   fi
 }
@@ -35,7 +35,7 @@ function init_env()
 function createorupdate_dependencies()
 {
     einfo "Installing Backstage dependencies"
-    yarn install 
+    yarn install
 }
 
 function createorupdate_local_config()
