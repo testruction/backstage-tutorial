@@ -4,7 +4,7 @@
 FROM docker.io/library/node:18-bookworm-slim AS packages
 
 WORKDIR /app
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock backstage.json ./
 
 COPY packages packages
 
@@ -12,7 +12,7 @@ COPY packages packages
 COPY plugins plugins
 
 # Except "package.json", remove all files located at the root of the "app" and "backend" folders.
-RUN find packages \! -name "package.json" \! -name "src" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
+RUN find packages \! -name "package.json" \! -name "backstage.json" \! -name "src" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
 
 
 # --------------------------------------------------
@@ -96,12 +96,14 @@ ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN pip3 install --no-cache \
-    'mkdocs-techdocs-core' \
-    'mkdocs-material' \
-    'mkdocs-mermaid-plugin' \
-    'mkdocs-monorepo-plugin' \
-    'mkdocs-diagrams'
+RUN pip install --no-cache \
+      'mkdocs-techdocs-core==1.3' \
+    && pip install --no-cache \
+      'mkdocs-material==9.5.1' \
+      'mkdocs-mermaid-plugin==0.1.1' \
+      'mkdocs-monorepo-plugin==1.0.5' \
+      'mkdocs-diagrams==1.0.0' \
+      'mkdocs-glightbox==0.3.5'
 
 # Install sqlite3 dependencies. You can skip this if you don't use sqlite3 in the image,
 # in which case you should also move better-sqlite3 to "devDependencies" in package.json.
@@ -119,7 +121,7 @@ USER node
 WORKDIR /app
 
 # Copy the install dependencies from the build stage and context
-COPY --from=build --chown=node:node /app/yarn.lock /app/package.json /app/packages/backend/dist/skeleton/ ./
+COPY --from=build --chown=node:node /app/yarn.lock /app/package.json /app/backstage.json /app/packages/backend/dist/skeleton/ ./
 
 RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid=1000 \
     yarn install --frozen-lockfile --production --network-timeout 600000

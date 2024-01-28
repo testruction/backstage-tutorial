@@ -9,9 +9,10 @@ RUN mkdir -vp /app
 COPY . /app
 WORKDIR /app
 
-RUN yarn install --network-timeout 600000
+RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid=1000 \
+    yarn install --network-timeout 600000
 
-COPY chart/config/app-config${STAGE}.yaml /app/
+COPY chart/config/app-config.${STAGE}.yaml /app/
 
 RUN yarn workspace app build
 
@@ -19,9 +20,9 @@ RUN yarn workspace app build
 # --------------------------------------------------
 # Step 2 release in Caddy web server
 # --------------------------------------------------
-FROM docker.io/amd64/caddy:2.7.5-alpine
+FROM docker.io/amd64/caddy:2.7-alpine
 
-COPY containers/caddy/config/Caddyfile /etc/caddy/Caddyfile
-COPY --from=build /app/packages/app/dist /usr/share/caddy
+COPY --chown=caddy:caddy containers/caddy/config/Caddyfile /etc/caddy/Caddyfile
+COPY --chown=caddy:caddy --from=build /app/packages/app/dist /usr/share/caddy
 
 ENV PORT 3000
