@@ -60,7 +60,7 @@ function catalog_provider_github()
 {
     yq -i '
     .catalog.locations[0].type = "url" |
-    .catalog.locations[0].target = "https://github.com/testruction/backstage-tutorial/blob/main/entities/core/locations.yaml" |
+    .catalog.locations[0].target = "https://github.com/testruction/backstage-tutorial/blob/main/entities/core/catalog-info.yaml" |
     .catalog.locations[0].rules[0].allow[0] = "User" |
     .catalog.locations[0].rules[0].allow[1] = "Group" |
     .catalog.locations[0].rules[0].allow[2] = "Domain" |
