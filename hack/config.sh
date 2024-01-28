@@ -60,14 +60,14 @@ function catalog_provider_github()
 {
     yq -i '
     .catalog.locations[0].type = "url" |
-    .catalog.locations[0].target = "https://github.com/testruction/backstage-tutorial/blob/main/software-catalog/core/locations.yaml" |
+    .catalog.locations[0].target = "https://github.com/testruction/backstage-tutorial/blob/main/entities/core/locations.yaml" |
     .catalog.locations[0].rules[0].allow[0] = "User" |
     .catalog.locations[0].rules[0].allow[1] = "Group" |
     .catalog.locations[0].rules[0].allow[2] = "Domain" |
     .catalog.locations[1].type = "url" |
-    .catalog.locations[1].target = "https://github.com/testruction/backstage-tutorial/blob/main/software-catalog/paypal/catalog-info.yaml" |
+    .catalog.locations[1].target = "https://github.com/testruction/backstage-tutorial/blob/main/entities/paypal/catalog-info.yaml" |
     .catalog.locations[2].type = "url" |
-    .catalog.locations[2].target = "https://github.com/testruction/backstage-tutorial/blob/main/software-catalog/sock-shop/catalog-info.yaml" |
+    .catalog.locations[2].target = "https://github.com/testruction/backstage-tutorial/blob/main/entities/sock-shop/catalog-info.yaml" |
     .catalog.providers.github.default.branch = "main" |
     .catalog.providers.github.default.fallBackBranch = "master" |
     .catalog.providers.github.default.skipForkedRepos = true |
