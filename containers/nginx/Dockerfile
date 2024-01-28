@@ -9,9 +9,10 @@ RUN mkdir -vp /app
 COPY . /app
 WORKDIR /app
 
-RUN yarn install --network-timeout 600000
+RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid=1000 \
+    yarn install --network-timeout 600000
 
-COPY chart/config/app-config${STAGE}.yaml /app/
+COPY chart/config/app-config.${STAGE}.yaml /app/
 
 RUN yarn workspace app build
 
