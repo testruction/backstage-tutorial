@@ -112,7 +112,7 @@ function linguist_config()
   .linguist.schedule.initialDelay.seconds = 15 |
   .linguist.age.days = 3 |
   .linguist.batchSize = 2 |
-  .linguist.useSourceLocation = false |
+  .linguist.useSourceLocation = true |
   .linguist.tagsProcessor.bytesThreshold = 1000 |
   .linguist.tagsProcessor.languageTypes[0] = "programming" |
   .linguist.tagsProcessor.languageTypes[1] = "markup" |

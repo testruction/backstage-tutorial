@@ -12,7 +12,7 @@ export default async function createPlugin(
     initialDelay: { seconds: 90 },
   };
 
-  return createRouter({ schedule: schedule, useSourceLocation: true }
+  return createRouter({ schedule: schedule }
     , { ...env }
   );
 }
