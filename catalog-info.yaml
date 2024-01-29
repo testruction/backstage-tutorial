@@ -58,6 +58,7 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     argocd/app-name: backstage
     backstage.io/source-location: url:https://github.com/testruction/backstage-tutorial
+    backstage.io/linguist: https://github.com/testruction/backstage-tutorial
   links:
     - title: Backstage official website
       url: http://backstage.io
