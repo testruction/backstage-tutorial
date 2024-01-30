@@ -7,7 +7,7 @@ function core_config()
 
   yq -i '
   .organization.name = "Testruction.io" |
-  .permission.enabled = false |
+  .permission.enabled = true |
   .app.title = "Backstage Demo" |
   .app.listen.host = "0.0.0.0" |
   .app.listen.host line_comment = "Required for Docker/WSL2" |
