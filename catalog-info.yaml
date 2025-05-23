@@ -2,6 +2,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
+  title: Developer portal
   name: developer-portal
   description: Developper portal
 spec:
@@ -11,8 +12,9 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
+  title: Backstage database
   name: backstage
-  description: Backstage database
+  description: Backstage PostgreSQL database
   tags:
     - database
     - schema
@@ -28,28 +30,9 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: backstage-db
-  description: Backstage Database
-  tags:
-    - database-engine
-    - postgresql
-  links:
-    - title: Site Web officiel de Backstage
-      url: http://backstage.io
-      icon: docs
-spec:
-  type: service
-  lifecycle: experimental
-  owner: group:testructer
-  system: developer-portal
-  dependsOn:
-    - resource:backstage
----
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: backstage-app
-  description: Backstage-app application.
+  title: Backstage
+  name: backstage
+  description: Backstage API server
   annotations:
     github.com/project-slug: testruction/backstage-tutorial
     backstage.io/adr-location: docs/adrs
@@ -74,3 +57,32 @@ spec:
     - resource:backstage
   providesApis: []
   consumesApis: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  title: Backstage SPA
+  name: backstage-app
+  description: Backstage single-page application
+  annotations:
+    github.com/project-slug: testruction/backstage-tutorial
+    backstage.io/adr-location: docs/adrs
+    backstage.io/kubernetes-id: backstage
+    backstage.io/kubernetes-namespace: backstage
+    backstage.io/techdocs-ref: dir:.
+    argocd/app-name: backstage
+    backstage.io/linguist: https://github.com/testruction/backstage-tutorial
+  links:
+    - title: Backstage official website
+      url: http://backstage.io
+      icon: docs
+  tags:
+    - "typescript"
+    - "nodejs"
+spec:
+  type: website
+  lifecycle: experimental
+  owner: group:testructer
+  system: developer-portal
+  dependsOn:
+    - component:backstage
