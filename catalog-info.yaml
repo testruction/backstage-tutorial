@@ -36,8 +36,7 @@ metadata:
   annotations:
     github.com/project-slug: testruction/backstage-tutorial
     backstage.io/adr-location: docs/adrs
-    backstage.io/kubernetes-id: backstage
-    backstage.io/kubernetes-namespace: backstage
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=backstage
     backstage.io/techdocs-ref: dir:.
     argocd/app-name: backstage
     backstage.io/linguist: https://github.com/testruction/backstage-tutorial
@@ -67,8 +66,7 @@ metadata:
   annotations:
     github.com/project-slug: testruction/backstage-tutorial
     backstage.io/adr-location: docs/adrs
-    backstage.io/kubernetes-id: backstage
-    backstage.io/kubernetes-namespace: backstage
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=backstage
     backstage.io/techdocs-ref: dir:.
     argocd/app-name: backstage
     backstage.io/linguist: https://github.com/testruction/backstage-tutorial
